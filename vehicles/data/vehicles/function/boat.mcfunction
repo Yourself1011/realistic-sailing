@@ -7,23 +7,27 @@ scoreboard players operation @s alignment -= global windYaw
 execute if score @s alignment matches 18000.. run scoreboard players remove @s alignment 36000
 execute if score @s alignment matches ..-18000 run scoreboard players add @s alignment 36000
 
+scoreboard players operation @s localWindSpeed = global windSpeed
+execute at @s if biome ~ ~ ~ #c:is_deep_ocean run scoreboard players operation @s localWindSpeed *= constant deepOceanCoef
+execute at @s if biome ~ ~ ~ #c:is_deep_ocean run scoreboard players operation @s localWindSpeed /= constant ten
+
 execute at @s run function vehicles:display
 
 execute if score @s alignment matches ..-1 run scoreboard players operation @s alignment *= constant constant
 
-execute if score @s alignment matches 0..2000 run scoreboard players set @s maxSpeed 0
-execute if score @s alignment matches 2001..4000 run scoreboard players set @s maxSpeed 50
-execute if score @s alignment matches 4001..5000 run scoreboard players set @s maxSpeed 100
-execute if score @s alignment matches 5001..8000 run scoreboard players set @s maxSpeed 200
-execute if score @s alignment matches 8001..12000 run scoreboard players set @s maxSpeed 300
-execute if score @s alignment matches 12001..16000 run scoreboard players set @s maxSpeed 200
-execute if score @s alignment matches 16001..18000 run scoreboard players set @s maxSpeed 100
+execute if score @s alignment matches 0..1500 run scoreboard players set @s maxSpeed 0
+execute if score @s alignment matches 1501..4000 run scoreboard players set @s maxSpeed 150
+execute if score @s alignment matches 4001..6000 run scoreboard players set @s maxSpeed 250
+execute if score @s alignment matches 6001..9000 run scoreboard players set @s maxSpeed 350
+execute if score @s alignment matches 9001..13000 run scoreboard players set @s maxSpeed 400
+execute if score @s alignment matches 13001..16000 run scoreboard players set @s maxSpeed 300
+execute if score @s alignment matches 16001..18000 run scoreboard players set @s maxSpeed 200
 
 scoreboard players operation @s drag = @s sailSpeed
 scoreboard players operation @s drag /= constant dragCoef
 
-scoreboard players operation @s maxSpeed *= global windSpeed
-execute if score @s sailSpeed < @s maxSpeed run scoreboard players operation @s sailSpeed += global windSpeed
+scoreboard players operation @s maxSpeed *= @s localWindSpeed
+execute if score @s sailSpeed < @s maxSpeed run scoreboard players operation @s sailSpeed += @s localWindSpeed
 execute if score @s sailSpeed > @s maxSpeed run scoreboard players operation @s sailSpeed -= @s drag
 execute if score @s sailSpeed > @s maxSpeed run scoreboard players operation @s sailSpeed -= constant dragConst
 

@@ -9,6 +9,7 @@ execute if score global windSpeed < global windSpeedTarget run scoreboard player
 execute if score global windSpeed > global windSpeedTarget run scoreboard players remove global windSpeed 1
 execute if score global gustTimer matches 1.. run scoreboard players operation global windSpeed = global windSpeedTarget
 execute if score global gustTimer matches 1.. run scoreboard players operation global windSpeed *= constant gustCoef
+execute if score global gustTimer matches 1.. run scoreboard players operation global windSpeed /= constant ten
 execute if score global windYaw < global windYawTarget run scoreboard players add global windYaw 100
 execute if score global windYaw > global windYawTarget run scoreboard players remove global windYaw 100
 

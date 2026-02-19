@@ -18,12 +18,18 @@ scoreboard objectives add jitter dummy
 
 scoreboard objectives add constant dummy
 scoreboard players set constant constant -1
+scoreboard objectives add ten dummy
+scoreboard players set constant ten 10
 scoreboard objectives add dragCoef dummy
 scoreboard players set constant dragCoef 50
 scoreboard objectives add dragConst dummy
 scoreboard players set constant dragConst 1
+
+# these are /10
 scoreboard objectives add gustCoef dummy
-scoreboard players set constant gustCoef 2
+scoreboard players set constant gustCoef 20
+scoreboard objectives add deepOceanCoef dummy
+scoreboard players set constant deepOceanCoef 15
 
 scoreboard objectives add windSpeedTarget dummy
 scoreboard objectives add windSpeedTimer dummy
@@ -31,6 +37,8 @@ scoreboard players set global windSpeedTimer 0
 scoreboard objectives add windYawTarget dummy
 scoreboard objectives add windYawTimer dummy
 scoreboard players set global windYawTimer 0
+
+scoreboard objectives add localWindSpeed dummy
 
 scoreboard objectives add gustTimer dummy
 scoreboard players set global gustTimer 0
